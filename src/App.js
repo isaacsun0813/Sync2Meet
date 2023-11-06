@@ -1,6 +1,7 @@
-import Login from './components/Login.js';
+import SignIn from './components/SignIn.js';
 import Landing from './components/Landing.js';
 import Home from './components/Home.js';
+import SignUp from './components/SignUp.js';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 
@@ -13,8 +14,11 @@ function App() {
             <Route exact path="/">
               <Landing />
             </Route>
-            <Route path="/login">
-              <Login />
+            <Route path="/signin">
+              <SignIn />
+            </Route>
+            <Route path="/signup">
+              <SignUp />
             </Route>
             <Route path="/home">
               <Home />
