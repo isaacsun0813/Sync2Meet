@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useHistory, Link } from "react-router-dom";
 import { GoogleLogin } from '@react-oauth/google';
 import { FaArrowCircleLeft } from 'react-icons/fa';
-import '../styling/SignIn.css';
+import '../styling/FormTemp.css';
 
 const SignIn = () => {
 
@@ -16,17 +16,19 @@ const SignIn = () => {
     }
 
     return (
-        <div className="signin">
+        <div className="formtemp">
             <form onSubmit={handleSubmit}>
                 <div onClick={() => history.push("/")} className="back-icon">
                     <FaArrowCircleLeft />
                 </div>
-                <h2>Sign In</h2>
+                <h2>
+                    <span className="purple-text">Sign</span> In
+                </h2>
                 <GoogleLogin />
                 <hr className="rounded" />
                 <label>Email:</label>
                 <input
-                    type="text"
+                    type="email"
                     required
                     value={email}
                     onChange={e => setEmail(e.target.value)}

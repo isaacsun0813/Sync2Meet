@@ -1,0 +1,54 @@
+.navbar {
+    padding: 0 20px; /* Padding on the left and right */
+    display: flex;
+    align-items: center;
+    justify-content: flex-start; /* Aligns items to the start of the container */
+    width: 100%; /* Full width */
+    height: 60px; /* Adjust the height as needed */
+    margin: 0; /* No margin to ensure it spans the full width */
+    border-bottom: 1px solid #f2f2f2;
+    font-family: 'Jost', sans-serif;
+    box-sizing: border-box; /* Ensures padding doesn't affect the overall width */
+}
+
+.navbar-brand {
+    margin-right: auto; /* Ensures it's pushed to the left */
+    text-decoration: none; /* Removes underline from links */
+    color: #000; /* Same as your h1 color */
+    display: flex; /* Keeps the link block-level */
+    align-items: center; /* Aligns the link vertically */
+    padding-left: 0; /* Ensures no padding on the left */
+}
+
+.navbar h1 {
+    font-size: 20px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #000;
+    margin: 0; /* Reset the margin */
+    padding: 0; /* If you want no padding */
+}
+
+.sync-text {
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #7e56a6;
+}
+
+.navbar .links {
+    margin-left: auto; /* This pushes the links to the far right */
+    display: flex; /* Aligns links in a row */
+}
+
+.navbar a {
+    margin-left: 16px; /* Space between links */
+    text-decoration: none;
+    padding: 6px;
+    color: #000; /* Default text color */
+    transition: color 0.3s ease; /* Smooth transition for hover effect */
+}
+
+.navbar a:hover {
+    color: #a571d9; /* Hover effect color */
+}

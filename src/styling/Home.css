@@ -1,0 +1,26 @@
+/* Home.css */
+
+.home .buttons{
+    text-align: center;
+}
+
+.home button {
+    background-color: #7e56a6; /* Your primary button color */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    margin: 0 10px;
+    margin-top: 50px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    font-family: 'Jost', sans-serif;
+    font-weight: 600; 
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.home button:hover {
+    background-color: #a571d9; /* Lighter purple for hover state */
+}
+  

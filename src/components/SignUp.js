@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { FaArrowCircleLeft } from 'react-icons/fa';
-import '../styling/SignUp.css';
+import '../styling/FormTemp.css';
 
 const SignUp = () => {
     const [email, setEmail] = useState('');
@@ -15,15 +15,17 @@ const SignUp = () => {
     };
 
     return (
-        <div className="signup">
+        <div className="formtemp">
             <form onSubmit={handleSubmit}>
                 <div onClick={() => history.goBack()} className="back-icon">
                     <FaArrowCircleLeft />
                 </div>
-                <h2>Sign Up</h2>
+                <h2>
+                    <span className="purple-text">Sign</span> Up
+                </h2>
                 <label>Email:</label>
                 <input
-                    type="text"
+                    type="email"
                     required
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
