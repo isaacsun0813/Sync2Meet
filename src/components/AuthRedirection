@@ -1,0 +1,42 @@
+// AuthHandler.js
+import { useEffect } from 'react';
+import { useLocation, useHistory } from 'react-router-dom';
+
+const AuthHandler = () => {
+  const location = useLocation();
+  const history = useHistory();
+
+  useEffect(() => {
+    // Get the code from URL query parameters
+    const searchParams = new URLSearchParams(location.search);
+    const code = searchParams.get('code');
+
+    if (code) {
+      // Send the code to the backend
+      fetch('https://lkfnvbv76h.execute-api.us-east-2.amazonaws.com/Prod', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ code }),
+      })
+      .then(response => response.json())
+      .then(data => {
+        // Here you would handle the data returned from the backend
+        // This might include saving the tokens and updating the application state
+        console.log(data);
+        history.push('/home');
+      })
+      .catch(error => {
+        console.error('Error:', error);
+        history.push('/'); // Redirect to the homepage or error page on failure
+      });
+    } else {
+      // If no code is in the URL, redirect back to the login page
+      history.push('/signin');
+    }
+  }, [location, history]);
+
+  // Render nothing or a loading indicator as this will process the redirect response
+  return null;
+};
+
+export default AuthHandler;
