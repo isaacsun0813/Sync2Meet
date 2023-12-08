@@ -33,7 +33,7 @@ const SignIn = () => {
             const data = await response.json();
             const responseBody = JSON.parse(data.body); // Parse the body to an object
             localStorage.setItem('accessToken', responseBody.access_token);
-
+            console.log(responseBody)
             // Handle the received data, which should include the access token and refresh token
             console.log("accessTOKEN", responseBody.access_token );
             // Redirect to the /home route after successful login
