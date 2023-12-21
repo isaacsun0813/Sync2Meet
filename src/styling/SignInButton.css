@@ -1,0 +1,24 @@
+/* SignInButton.css */
+
+.custom-google-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: white; /* White background for the button */
+    color: black; /* Black text color */
+    padding: 10px 20px;
+    border: 1px solid black; /* Black border */
+    border-radius: 4px;
+    font-weight: 300;
+    cursor: pointer;
+    font-family: 'Jost', sans-serif;
+}
+
+.custom-google-button:hover {
+    background-color: #f2f2f2; /* Light grey background on hover */
+    color: black; /* Ensure text stays black on hover */
+}
+
+.custom-google-button img {
+    margin-right: 10px;
+}

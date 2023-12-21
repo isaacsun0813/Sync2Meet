@@ -140,9 +140,10 @@ const Home = () => {
       setLoading(false);
     }
   };
+
   return (
     <div className="home">
-      <Navbar />
+        <Navbar />
       <div className="buttons">
         <button onClick={handleAdd}>Add Contact</button>
         <button onClick={handleScheduleTime}>Schedule Time</button>

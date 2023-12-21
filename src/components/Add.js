@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import '../styling/FormTemp.css'; // Assuming you are using the same CSS file
+import '../styling/FormTemp.css';
 
 const Add = ({ onClose }) => {
     const [email, setEmail] = useState('');

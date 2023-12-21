@@ -1,56 +1,57 @@
 /* Home.css */
 
+@import url('https://fonts.googleapis.com/css2?family=Jost:wght@400;700&display=swap');
+
 .home .buttons{
     text-align: center;
 }
 
-.home button {
-    background-color: #7e56a6; /* Your primary button color */
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    margin: 0 10px;
-    margin-top: 50px;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-    font-family: 'Jost', sans-serif;
-    font-weight: 600; 
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
+.home .buttons button {
+  background-color: #7e56a6;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  margin: 0 10px;
+  margin-top: 50px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  font-family: 'Jost', sans-serif;
+  font-weight: 600; 
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
-.home button:hover {
-    background-color: #a571d9; /* Lighter purple for hover state */
+.home .buttons button:hover {
+  background-color: #a571d9; /* Lighter purple for hover state */
 }
 
 .centered-content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    min-height: 100vh; /* Use at least the full height of the viewport */
-  }
-  
-  .centered-content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-    min-height: 100vh;
-  }
-  
-  .AvailableTimes {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-  }
-  
-  .UniqueEmails, .TimeInput {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-  }
-  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh; /* Use at least the full height of the viewport */
+}
+
+.centered-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  min-height: 100vh;
+}
+
+.AvailableTimes {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.UniqueEmails, .TimeInput {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}

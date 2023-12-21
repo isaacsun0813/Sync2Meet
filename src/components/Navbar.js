@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import SignIn from './SignIn.js';
 import "../styling/Navbar.css";
 
 const Navbar = () => {
@@ -10,9 +11,8 @@ const Navbar = () => {
                     <span className="sync-text">Sync</span>2Meet
                 </h1>
             </Link>
-            <div className="links">
-            {/* <Link to="/sync">Sync Contacts</Link> */}
-                <Link to="/profile">Username</Link>
+            <div>
+                <SignIn />
             </div>
         </nav>
     );
