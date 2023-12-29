@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
+import '../styling/UserList.css';
 
-const UniqueEmails = ({ onSelectUser }) => {
+const UniqueEmails = ({ onSelectUser, isVisible }) => {
   const [userIds, setUserIds] = useState([]);
   const [loading, setLoading] = useState(false);
 
@@ -21,16 +22,19 @@ const UniqueEmails = ({ onSelectUser }) => {
   }, []);
 
   return (
-    <div>
-      {loading ? (
-        <p>Loading...</p>
-      ) : (
-        userIds.map((userId, index) => (
-          <button key={index} onClick={() => onSelectUser(userId)}>
-            {userId}
-          </button>
-        ))
-      )}
+    <div className="user-list-container">
+        <div className="user-list">
+          <p>Select User</p>  
+          {loading ? (
+            <p>Loading...</p>
+          ) : (
+            userIds.map((userId, index) => (
+              <button key={index} onClick={() => onSelectUser(userId)} className="user-button">
+                {userId}
+              </button>
+            ))
+          )}
+        </div>
     </div>
   );
 };

@@ -27,7 +27,7 @@ const SignIn = () => {
             // Handle the received data, which should include the access token and refresh token
             console.log("accessTOKEN", responseBody.access_token );
             // Redirect to the /home route after successful login
-            history.push('/home');
+            history.push('/');
           } catch (error) {
             console.error('Error:', error);
             // Handle errors, such as by displaying a message to the user

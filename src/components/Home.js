@@ -6,6 +6,7 @@ import Add from './Add.js';
 import UniqueEmails from './UniqueEmails.js';
 import TimeInput from './TimeInput.js';
 import AvailableTimes from './AvailableTimes.js';
+import Calendar from './EventCalendar.js';
 import '../styling/Home.css';
 
 
@@ -25,6 +26,9 @@ const Home = () => {
     const [selectedUser, setSelectedUser] = useState(null);
     const [availableTimes, setAvailableTimes] = useState([]);
     const [currentUser, setCurrentUser] = useState(null);
+    const [loggedIn, setLoggedIn] = useState(false); // trying to make the sign in button disappear after logging in
+    const [synced, setSynced] = useState(false);
+
     useEffect(() => {
         // Fetch the signed-in user ID from local storage when the component mounts
         const signedInUserId = localStorage.getItem('signedInUserId');
@@ -35,7 +39,7 @@ const Home = () => {
           console.error('No signed-in user ID found in local storage.');
           // Redirect to login or handle accordingly
         }
-      }, []);
+    }, []);
 
     const formatDateTimeForDynamoDB = (dateTimeString) => {
         // Convert the ISO date-time string to a format suitable for DynamoDB
@@ -85,6 +89,9 @@ const Home = () => {
             setTimeout(() => {
               setShowSuccessPopup(false); // Hide the popup after 3 seconds
             }, 3000);
+
+            setSynced(true);
+
         } catch (error) {
             console.error('Error:', error);
         }
@@ -99,79 +106,83 @@ const Home = () => {
         setShowUserEmails(false);
         setSelectedUser(null);
         setAvailableTimes([]);
-      };
+    };
+
     const handleScheduleTime = () => {
         setShowUserEmails(true);
-      };
+    };
 
     const handleUserSelection = (userId) => {
         setSelectedUser(userId);
         setShowUserEmails(false);
-      };
-      const findMeetingTimes = async (timeFrame) => {
-    // This assumes you have set the currentUser in local storage upon login.
-    if (!selectedUser || !currentUser) {
-      alert('No user selected or current user not set.');
-      return;
-    }
-    setLoading(true);
-    try {
-        console.log(currentUser);
-        console.log(selectedUser);
-      const response = await fetch('https://lkfnvbv76h.execute-api.us-east-2.amazonaws.com/Prod/meeting', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          userId1: currentUser,
-          userId2: selectedUser,
-          timeFrame: parseInt(timeFrame, 10)
-        })
-      });
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-      const data = await response.json();
-      setAvailableTimes(data);
-    } catch (error) {
-      console.error('Error finding meeting times:', error);
-    } finally {
-      setLoading(false);
-    }
-  };
+    };
 
-  return (
-    <div className="home">
-        <Navbar />
-      <div className="buttons">
-        <button onClick={handleAdd}>Add Contact</button>
-        <button onClick={handleScheduleTime}>Schedule Time</button>
-        <button onClick={syncDatabase}>Sync Database</button>
-      </div>
-      <div className="centered-content">
-        {showAddModal && <Add onClose={handleClose} />}
-        {showSuccessPopup && <SuccessPopup message="Success!" />}
-        {showUserEmails && <UniqueEmails onSelectUser={handleUserSelection} />}
-        {selectedUser && (
-          <TimeInput
-            userId1={selectedUser}
-            onFindTimes={setAvailableTimes}
-            findMeetingTimes={findMeetingTimes} // Pass the function as a prop
-          />
-        )}
-        {availableTimes.length > 0 && (
-            <AvailableTimes times={availableTimes.map((time, index) => (
-                <div key={index} className="available-time">
-                <p>Start: {new Date(time.start).toLocaleString()}</p>
-                <p>End: {new Date(time.end).toLocaleString()}</p>
-                </div>
-            ))} onClose={() => setAvailableTimes([])} />
-            )}
-      </div>
-    </div>
-  );
-  
+    const findMeetingTimes = async (timeFrame) => {
+        // This assumes you have set the currentUser in local storage upon login.
+        if (!selectedUser || !currentUser) {
+        alert('No user selected or current user not set.');
+        return;
+        }
+        setLoading(true);
+        try {
+            console.log(currentUser);
+            console.log(selectedUser);
+            const response = await fetch('https://lkfnvbv76h.execute-api.us-east-2.amazonaws.com/Prod/meeting', {
+                method: 'POST',
+                headers: {
+                'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                userId1: currentUser,
+                userId2: selectedUser,
+                timeFrame: parseInt(timeFrame, 10)
+                })
+            });
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            const data = await response.json();
+            setAvailableTimes(data);
+        } catch (error) {
+            console.error('Error finding meeting times:', error);
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    console.log("Is database synced?", synced);
+
+    return (
+        <div className="home">
+            <Navbar loggedIn={!loggedIn}/>
+            <div className="buttons">
+                {/* <button onClick={handleAdd}>Add Contact</button> */}
+                {!synced && <button onClick={syncDatabase}>Sync Database</button>}
+                {synced && <button onClick={handleScheduleTime}>Schedule Event</button>}
+            </div>
+            <div className="centered-content">
+                {showAddModal && <Add onClose={handleClose} />}
+                {showSuccessPopup && <SuccessPopup message="Success!" />}
+                {showUserEmails && <UniqueEmails onSelectUser={handleUserSelection}/>}
+                {selectedUser && (
+                <TimeInput
+                    userId1={selectedUser}
+                    onFindTimes={setAvailableTimes}
+                    findMeetingTimes={findMeetingTimes} // Pass the function as a prop
+                />
+                )}
+                {availableTimes.length > 0 && (
+                    <AvailableTimes times={availableTimes.map((time, index) => (
+                        <div key={index} className="available-time">
+                        <p>Start: {new Date(time.start).toLocaleString()}</p>
+                        <p>End: {new Date(time.end).toLocaleString()}</p>
+                        </div>
+                    ))} onClose={() => setAvailableTimes([])} />
+                )}
+            </div>
+            {/* {<Calendar schedule={handleScheduleTime} />} */}
+        </div>
+    );
 };
  
 export default Home;

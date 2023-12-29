@@ -1,8 +1,6 @@
  
 import React, { useEffect } from "react";
 
- 
-
 export const Calendar = () => {
 
 const gapi = window.gapi;

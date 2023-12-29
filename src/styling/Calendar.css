@@ -1,0 +1,51 @@
+/* Calendar.css */
+
+.calendar-container {
+    max-width: 600px;
+    padding: 16px;
+    margin: auto;
+    font-family: 'Jost', sans-serif;
+}
+
+.calendar-header {
+    margin-bottom: 16px;
+    text-align: center;
+}
+
+.calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr); /* 7 columns for the days of the week */
+    gap: 4px;
+}
+
+.weekday-header {
+    font-weight: bold;
+    text-align: center;
+}
+
+.day-cell {
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 8px;
+    text-align: center;
+    min-height: 40px; /* Or any other height */
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+}
+
+.day-cell:hover {
+    background-color: #eaeaea; /* A light grey for hover state */
+}
+
+.day-cell.selected {
+    background-color: #c8e1ff; /* A different color to indicate selection */
+}
+
+.day-cell.today {
+    background-color: #f0f0f0;
+}
+
+.empty-cell {
+    background-color: transparent;
+}
+  

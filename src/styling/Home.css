@@ -1,9 +1,8 @@
 /* Home.css */
-
 @import url('https://fonts.googleapis.com/css2?family=Jost:wght@400;700&display=swap');
 
 .home .buttons{
-    text-align: center;
+  text-align: center;
 }
 
 .home .buttons button {
@@ -11,15 +10,14 @@
   color: white;
   border: none;
   padding: 10px 20px;
-  margin: 0 10px;
-  margin-top: 50px;
+  margin: 30px 10px;
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s;
-  font-family: 'Jost', sans-serif;
   font-weight: 600; 
   text-transform: uppercase;
   letter-spacing: 0.05em;
+  font-family: 'Jost', sans-serif;
 }
 
 .home .buttons button:hover {
